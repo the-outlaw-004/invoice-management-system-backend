@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const InvoiceMasterSchema = new mongoose.Schema({
   Invoice_Id: {
     type: mongoose.Schema.Types.ObjectId,
-    auto: true, // Automatically generate a unique ID
+    auto: true,
   },
   Invoice_no: {
     type: String,
     required: true,
-    unique: true, // Ensure invoice numbers are unique
+    unique: true,
   },
   Invoice_Date: {
     type: Date,

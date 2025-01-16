@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const tempInvoiceDetail = require("./src/api/tempInvoiceRoutes");
 const productRoutes = require("./src/api/productRoutes");
+const invoice_masterRoutes = require("./src/api/invoice_masterRoutes");
+const productInvoiceRoutes = require("./src/api/productInvoiceRoutes");
 
 dotenv.config();
 app.use(cors());
@@ -18,8 +20,9 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 
 // Routes
 app.use("/api/tempInvoiceDetails", tempInvoiceDetail);
+app.use("/api/invoice", invoice_masterRoutes);
 app.use("/api/products", productRoutes);
-// app.use("/api", invoiceRoutes);
+app.use("/api/productInvoice", productInvoiceRoutes);
 
 app.get("/", (req, res) => {
   res.send("hello world");

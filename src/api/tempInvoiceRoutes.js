@@ -16,44 +16,10 @@ router.post("/", async (req, res) => {
 // Get all TempInvoiceDetails
 router.get("/", async (req, res) => {
   try {
-    const tempInvoiceDetails = await TempInvoiceDetail.find().populate(
-      "product_id"
-    );
+    const tempInvoiceDetails = await TempInvoiceDetail.find();
     res.status(200).json(tempInvoiceDetails);
   } catch (error) {
     res.status(500).json({ error: error.message });
-  }
-});
-
-// Get a single TempInvoiceDetail by ID
-router.get("//:id", async (req, res) => {
-  try {
-    const tempInvoiceDetail = await TempInvoiceDetail.findById(
-      req.params.id
-    ).populate("Product_Id");
-    if (!tempInvoiceDetail) {
-      return res.status(404).json({ message: "TempInvoiceDetail not found" });
-    }
-    res.status(200).json(tempInvoiceDetail);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// Update a TempInvoiceDetail by ID
-router.put("//:id", async (req, res) => {
-  try {
-    const tempInvoiceDetail = await TempInvoiceDetail.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    ).populate("product_Id");
-    if (!tempInvoiceDetail) {
-      return res.status(404).json({ message: "TempInvoiceDetail not found" });
-    }
-    res.status(200).json(tempInvoiceDetail);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
   }
 });
 
